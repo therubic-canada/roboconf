@@ -11,5 +11,5 @@ This package will allow loading the nearest config file based a specific pattern
 ```
 import roboconf
 
-conf = roboconf.load_nearest_conf(__path__)
+conf = roboconf.load_nearest_conf(__file__)
 ```

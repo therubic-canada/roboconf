@@ -4,6 +4,9 @@ import yaml
 
 def load_nearest_conf(path, verbose=False):
     current_path = Path(path)
+    if current_path.isfile():
+        current_path = current_path.parent
+
     conf_path = None
     while current_path != Path('/'):
         if (current_path / 'config').exists():

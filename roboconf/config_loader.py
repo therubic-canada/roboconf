@@ -8,7 +8,7 @@ def load_nearest_conf(path, verbose=False):
         current_path = current_path.parent
 
     conf_path = None
-    while current_path != Path('/'):
+    while current_path != current_path.parent:
         if (current_path / 'config').exists():
             for file in (current_path / 'config').iterdir():
                 if file.suffixes == ['.roboconf', '.yml']:

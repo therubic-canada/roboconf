@@ -11,13 +11,16 @@ def load_nearest_conf(path, verbose=False):
 
     conf_path = None
     while current_path != current_path.parent:
+        print(path)
         if (current_path / 'config').exists():
             for file in (current_path / 'config').iterdir():
+                print('file--', file)
                 if file.suffixes == ['.roboconf', '.yml']:
                     conf_path = file
                     break
 
         for file in current_path.iterdir():
+            print('file2--', file)
             if file.suffixes == ['.roboconf', '.yml']:
                 conf_path = file
                 break

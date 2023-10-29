@@ -3,7 +3,7 @@ import yaml
 
 
 def load_nearest_conf(path, verbose=False):
-    current_path = Path(path).resolve()
+    current_path = Path(path).resolve(strict=True)
     if current_path.is_file():
         current_path = current_path.parent
 

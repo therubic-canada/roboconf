@@ -14,18 +14,14 @@ preview = true
 select = ["ALL"]
 ignore = [
     # These will eventually be enabled
-    "ANN",       # Type annotations
     "T201",      # Use of print statements
     # These will not
-    "PLR09",     # Too many X variables
-    "SIM105",    # Use contextlib.supress
-    "DTZ",       # Timezone in datetime
-    "PYI",       # Type hinting
-    "TID252",    # Prefer absolute imports
-    "RSE102",    # Unnecessary parentheses on raised exceptions
-    "TRY",
-    "EM",
     "CPY",
+    "EM",
+    "RSE102",    # Unnecessary parentheses on raised exceptions
+    "SIM105",    # Use contextlib.supress
+    "TID252",    # Prefer absolute imports
+    "TRY003",    # Avoid specifying long messages outside the exception class
 ]
 
 [lint.flake8-quotes]

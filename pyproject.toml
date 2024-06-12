@@ -1,14 +1,36 @@
+[build-system]
+requires = ["setuptools>=61.2"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "roboconf"
+version = "1.0.2"
+authors = [
+    {name = "Auguste Lalande", email = "alal@therubic.com"},
+]
+description = "Configuration file loading utility."
+dependencies = ["setuptools", "pyyaml"]
+
+[tool.setuptools]
+zip-safe = true
+include-package-data = false
+
+[tool.setuptools.packages.find]
+exclude = ["test"]
+namespaces = false
+
+[tool.ruff]
 line-length = 80
 indent-width = 4
 
 target-version = "py38"
 
-[format]
+[tool.ruff.format]
 quote-style = "single"
 indent-style = "space"
 line-ending = "auto"
 
-[lint]
+[tool.ruff.lint]
 preview = true
 
 select = ["ALL"]
@@ -24,15 +46,12 @@ ignore = [
     "TRY003",    # Avoid specifying long messages outside the exception class
 ]
 
-[lint.flake8-quotes]
+[tool.ruff.lint.flake8-quotes]
 docstring-quotes = "double"
 inline-quotes = "single"
 
-[lint.pydocstyle]
+[tool.ruff.lint.pydocstyle]
 convention = "google"
 
-[lint.isort]
+[tool.ruff.lint.isort]
 force-sort-within-sections = true
-
-[lint.per-file-ignores]
-"setup.py" = ["D1"]

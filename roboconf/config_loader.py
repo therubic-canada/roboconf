@@ -1,11 +1,13 @@
 """Utility for loading nearest config file."""
 
+from __future__ import annotations
+
 from pathlib import Path
 
 import yaml
 
 
-def load_nearest_conf(path: str, *, verbose: bool = False) -> dict:
+def load_nearest_conf(path: str | Path, *, verbose: bool = False) -> dict:
     """Finds and reads the nearest config file.
 
     Args:
@@ -28,7 +30,7 @@ def load_nearest_conf(path: str, *, verbose: bool = False) -> dict:
         return yaml.safe_load(f)
 
 
-def _find_nearest_conf(path: str) -> Path:
+def _find_nearest_conf(path: str | Path) -> Path:
     current_path = Path(path).resolve(strict=True)
     if current_path.is_file():
         current_path = current_path.parent

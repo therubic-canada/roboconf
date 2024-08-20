@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "roboconf"
-version = "1.0.2"
+version = "1.0.3"
 authors = [
     {name = "Auguste Lalande", email = "alal@therubic.com"},
 ]
@@ -37,6 +37,7 @@ select = ["ALL"]
 ignore = [
     # These will eventually be enabled
     "T201",      # Use of print statements
+    "DOC",
     # These will not
     "CPY",
     "EM",

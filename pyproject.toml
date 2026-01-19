@@ -45,6 +45,7 @@ ignore = [
     "SIM105",    # Use contextlib.supress
     "TID252",    # Prefer absolute imports
     "TRY003",    # Avoid specifying long messages outside the exception class
+    "COM812"
 ]
 
 [tool.ruff.lint.flake8-quotes]

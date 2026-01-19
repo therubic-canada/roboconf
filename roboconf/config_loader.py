@@ -7,11 +7,14 @@ from pathlib import Path
 import yaml
 
 
-def load_nearest_conf(path: str | Path, *, verbose: bool = False) -> dict:
+def load_nearest_conf(
+    path: str | Path, *, name: str = 'config', verbose: bool = False
+) -> dict:
     """Finds and reads the nearest config file.
 
     Args:
         path (str): Path from which to start searching. Usually "__file__".
+        name (str): Config file name. "config" by default.
         verbose (bool, optional): Whether to print the path to the found
             config file.
 
@@ -21,7 +24,7 @@ def load_nearest_conf(path: str | Path, *, verbose: bool = False) -> dict:
     Raises:
         FileNotFoundError: If no config file is found.
     """
-    conf_path = _find_nearest_conf(path)
+    conf_path = _find_nearest_conf(path, name)
 
     if verbose:
         print(conf_path)
@@ -30,31 +33,25 @@ def load_nearest_conf(path: str | Path, *, verbose: bool = False) -> dict:
         return yaml.safe_load(f)
 
 
-def _find_nearest_conf(path: str | Path) -> Path:
+def _find_nearest_conf(path: str | Path, name: str) -> Path:
     current_path = Path(path).resolve(strict=True)
     if current_path.is_file():
         current_path = current_path.parent
 
-    conf_path = None
     while current_path != current_path.parent:
         if (current_path / 'config').exists():
             for file in (current_path / 'config').iterdir():
-                if file.suffixes == ['.roboconf', '.yml']:
-                    conf_path = file
-                    break
+                if file.name == f'{name}.roboconf.yml':
+                    return file
 
         for file in current_path.iterdir():
-            if file.suffixes == ['.roboconf', '.yml']:
-                conf_path = file
-                break
+            if file.name == f'{name}.roboconf.yml':
+                return file
 
         for file in current_path.glob('src/*/config/*.roboconf.yml'):
-            conf_path = file
-            break
+            if file.name == f'{name}.roboconf.yml':
+                return file
 
         current_path = current_path.parent
 
-    if conf_path is None:
-        raise FileNotFoundError('No conf file found.')
-
-    return conf_path
+    raise FileNotFoundError('No conf file found.')

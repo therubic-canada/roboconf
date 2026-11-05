@@ -9,7 +9,7 @@ authors = [
     {name = "Auguste Lalande", email = "alal@therubic.com"},
 ]
 description = "Configuration file loading utility."
-dependencies = ["setuptools", "pyyaml"]
+dependencies = ["pyyaml"]
 
 [tool.setuptools]
 zip-safe = true
